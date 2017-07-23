@@ -47,7 +47,7 @@
       const pattern = this.pattern ? this.pattern : this.hashbang ? '#!/' : '#/';
       url = url.split(pattern);
       // whenever url[1] is empty or url is undefined, return null
-      if (url && url[1].length === 0 || !url || url && !url[1]) return null;
+      if (url && !url[1] || url && url[1].length === 0 || !url || url && !url[1]) return null;
       else return url[1];
     }
 
