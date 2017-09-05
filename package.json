@@ -6,6 +6,7 @@
   "author": "VandeurenGlenn <vandeurenglenn@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "backed": "next"
+    "backed": "next",
+    "lodash": "^4.17.4"
   }
 }

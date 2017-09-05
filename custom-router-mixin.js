@@ -1,7 +1,8 @@
-import PropertyMixin from 'node_modules/backed/mixins/property-mixin.min.js';
+import PropertyMixin from './../backed/mixins/property-mixin.min.js';
+import merge from './../lodash/merge.js';
 export default base => {
-  class CustomRouterMixin extends PropertyMixin(base) {
-    constructor() {
+  return class CustomRouterMixin extends PropertyMixin(base) {
+    constructor(options = {}) {
       const properties = {
         route: {
           value: null,
@@ -37,7 +38,7 @@ export default base => {
           value: null
         }
       }
-      Object.assign(options.properties, properties);
+      merge(options.properties, properties);
       super(options);
     }
     ready() {
