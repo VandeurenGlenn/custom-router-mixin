@@ -6,7 +6,12 @@ export default base => {
       const properties = {
         route: {
           value: null,
-          reflect: true,
+          // reflect: true,
+          observer: '__routeObserver'
+        },
+
+        startRoute: {
+          value: '/',
           observer: '__routeObserver'
         },
 
@@ -14,14 +19,15 @@ export default base => {
          * whenever visited site isn't a valid one router will return selected fallback url
          */
         fallback: {
-          value: '404'
+          observer: '__routeObserver'
         },
 
         /**
          * Array of routes
          */
         routes: {
-          value: []
+          value: [],
+          observer: '__routeObserver'
         },
 
         /**
@@ -41,7 +47,8 @@ export default base => {
       merge(options.properties, properties);
       super(options);
     }
-    ready() {
+    connectedCallback() {
+      super.connectedCallback();
       this._onHashChange = this._onHashChange.bind(this);
       window.addEventListener('hashchange', this._onHashChange);
       this._onHashChange({newURL: location.href});
@@ -64,11 +71,21 @@ export default base => {
       }
     }
 
-    __routeObserver({value}) {
+    __routeObserver() {
       // check if route exists
-      // TODO: parseURL & get subroute ...
-      if (this.routes.indexOf(value) === -1) value = this.fallback;
-      location.hash = this.hashbang ? `!/${value}` : `/${value}`;
+      // TODO: parseURL & get subroute .
+      let route = this.route || this.startRoute;
+      if (route && this.routes && this.routes.length > 0) {
+        if (this.routes && this.routes.indexOf(route) === -1) {
+          route = this.fallback;
+        }
+        location.hash = this.hashbang ? `!/${route}` : `/${route}`;
+        this.routeChange(route)
+      }
+    }
+
+    go(route) {
+      this.route = route;
     }
   };
 }
