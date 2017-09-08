@@ -2,16 +2,17 @@ import PropertyMixin from './../backed/mixins/property-mixin.min.js';
 import merge from './../lodash/merge.js';
 export default base => {
   return class CustomRouterMixin extends PropertyMixin(base) {
+    /**
+     * place ! after hash or not
+     */
+    get hashbang() {
+      return !Boolean(this.hasAttribute('no-hashbang'));
+    }
+
     constructor(options = {}) {
       const properties = {
         route: {
-          value: null,
           // reflect: true,
-          observer: '__routeObserver'
-        },
-
-        startRoute: {
-          value: '/',
           observer: '__routeObserver'
         },
 
@@ -28,13 +29,6 @@ export default base => {
         routes: {
           value: [],
           observer: '__routeObserver'
-        },
-
-        /**
-         * place ! after hash or not
-         */
-        hashbang: {
-          value: false
         },
 
         /**
@@ -66,22 +60,23 @@ export default base => {
       const route = this.parseURL(event.newURL);
       if (this.route !== route) {
         this.route = route;
-        this.__routeObserver({value: this.route});
-        this.dispatchEvent(new CustomEvent('route-change', {detail: this.route}));
       }
     }
 
     __routeObserver() {
       // check if route exists
       // TODO: parseURL & get subroute .
-      let route = this.route || this.startRoute;
-      if (route && this.routes && this.routes.length > 0) {
-        if (this.routes && this.routes.indexOf(route) === -1) {
-          route = this.fallback;
+      if (this.route && this.routes && this.routes.length > 0) {
+        if (this.routes && this.routes.indexOf(this.route) === -1) {
+          this.route = this.fallback || '404';
         }
-        location.hash = this.hashbang ? `!/${route}` : `/${route}`;
-        this.routeChange(route)
+        location.hash = this.hashbang ? `!/${this.route}` : `/${this.route}`;
+        this.routeChange(this.route);
       }
+    }
+
+    routeChange(route) {
+      this.dispatchEvent(new CustomEvent('route-change', {value: route}));
     }
 
     go(route) {
