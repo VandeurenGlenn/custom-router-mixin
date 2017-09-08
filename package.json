@@ -1,6 +1,6 @@
 {
   "name": "custom-router-mixin",
-  "version": "0.9.0-preview.4",
+  "version": "0.9.0",
   "main": "custom-router-mixin.js",
   "repository": "https://github.com/vandeurenglenn/custom-router-mixin",
   "author": "VandeurenGlenn <vandeurenglenn@gmail.com>",
