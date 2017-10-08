@@ -1,16 +1,10 @@
-import PropertyMixin from './../backed/mixins/property-mixin.min.js';
-import merge from './../lodash/merge.js';
+import PropertyMixin from '../backed/src/mixins/property-mixin.js';
+import {merge} from '../backed/src/utils.js';
+
 export default base => {
   return class CustomRouterMixin extends PropertyMixin(base) {
-    /**
-     * place ! after hash or not
-     */
-    get hashbang() {
-      return !Boolean(this.hasAttribute('no-hashbang'));
-    }
-
-    constructor(options = {}) {
-      const properties = {
+    static get properties() {
+      return merge(super.properties, {
         route: {
           // reflect: true,
           observer: '__routeObserver'
@@ -37,9 +31,18 @@ export default base => {
         pattern: {
           value: null
         }
-      }
-      merge(options.properties, properties);
-      super(options);
+      });
+    }
+
+    /**
+     * place ! after hash or not
+     */
+    get hashbang() {
+      return !Boolean(this.hasAttribute('no-hashbang'));
+    }
+
+    constructor() {
+      super();
     }
     connectedCallback() {
       super.connectedCallback();
