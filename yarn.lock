@@ -2,56 +2,7 @@
 # yarn lockfile v1
 
 
-backed@^0.9.0-preview.2, backed@beta, backed@next:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/backed/-/backed-0.9.0.tgz#40caf7bc82d76f9ea8bc9ef2972c06a6d5cef5b0"
-  dependencies:
-    lit-html "^0.5.0"
-
-custom-app-layout@next:
-  version "0.9.0-preview.5"
-  resolved "https://registry.yarnpkg.com/custom-app-layout/-/custom-app-layout-0.9.0-preview.5.tgz#8495bd0bbe04f5bab224ea310b77a63006195251"
-  dependencies:
-    backed beta
-    custom-effects experimental
-    lodash-es "^4.17.4"
-
-custom-docs@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/custom-docs/-/custom-docs-0.9.0.tgz#33d584ede35b45aa9331a0c27831fe7ec3dce961"
-  dependencies:
-    custom-app-layout next
-    custom-header next
-    custom-pages "^0.9.0"
-
-custom-effects@experimental:
-  version "0.9.0-experimental.1"
-  resolved "https://registry.yarnpkg.com/custom-effects/-/custom-effects-0.9.0-experimental.1.tgz#fd9f76f64220f085f21d2c9c45669bba9bbdbecf"
-
-custom-header@next:
-  version "0.9.0-preview.1"
-  resolved "https://registry.yarnpkg.com/custom-header/-/custom-header-0.9.0-preview.1.tgz#07b9817647e6ec3cdf5f74f34a9f41ca69030245"
-  dependencies:
-    backed next
-
-custom-pages@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/custom-pages/-/custom-pages-0.9.0.tgz#9aaa1d7336565f2f1638ad87205f00fd249d43dc"
-  dependencies:
-    backed "^0.9.0-preview.2"
-    custom-select-mixins next
-
-custom-select-mixins@next:
-  version "0.9.0-preview.3"
-  resolved "https://registry.yarnpkg.com/custom-select-mixins/-/custom-select-mixins-0.9.0-preview.3.tgz#a49ca36a7018c81361f542abf232dcbcce0f7b18"
-  dependencies:
-    backed "^0.9.0-preview.2"
-    lodash-es "^4.17.4"
-
-lit-html@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-0.5.0.tgz#eb2fb1202d16fbae5f9d0879ba487b286d6b8458"
-
-lodash-es@^4.17.4:
-  version "4.17.4"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
+backed@0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/backed/-/backed-0.13.0.tgz#0852aae4fa498a77c0445d5afb9999c640543929"
+  integrity sha512-X9uNRGu5Vrvsgtg6MB+5wPCOJgo4WIehWwLm3VqdSqnWFqMRxavP+301+6yP0EBvLJ8rYMVaeYrBbUSBy1fcig==
